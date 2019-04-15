@@ -27,7 +27,7 @@ import java.sql.*;
 
 import javax.servlet.jsp.PageContext;
 
-public class LIB_IVR_BASE_BECH
+public class LIB_IVR_BASE_VTR
 {
 
 	//private static  JsonParser      parser  = new JsonParser();
@@ -160,13 +160,13 @@ public class LIB_IVR_BASE_BECH
 	public String ErrorFilePath = "";
 	//
 
-	public LIB_IVR_BASE_BECH(String ParametersFile)
+	public LIB_IVR_BASE_VTR(String ParametersFile)
 	{
 		//super(ParametersFile);
 		String catalina = System.getProperty("catalina.base");
 		if(catalina != null)
 			if (ParametersFile.equals("")){    		
-				ParametersFile = catalina + "//lib//FunctionsGVP.BECH.properties";    		    		
+				ParametersFile = catalina + "//lib//FunctionsGVP.VTR.properties";    		    		
 			}else{
 				ParametersFile = catalina + "//lib//"+ParametersFile;
 			}
@@ -175,13 +175,13 @@ public class LIB_IVR_BASE_BECH
 		//        this.InstanceID = id;              
 	}
 
-	public LIB_IVR_BASE_BECH(String ParametersFile, String CallId)
+	public LIB_IVR_BASE_VTR(String ParametersFile, String CallId)
 	{
 		//super(ParametersFile, CallId);
 		String catalina = System.getProperty("catalina.base");
 		if(catalina != null)
 			if (ParametersFile.equals("")){    		
-				ParametersFile = catalina + "//lib//FunctionsGVP.BECH.properties";    		    		
+				ParametersFile = catalina + "//lib//FunctionsGVP.VTR.properties";    		    		
 			}else{
 				ParametersFile = catalina + "//lib//"+ParametersFile;
 			}		
@@ -190,7 +190,7 @@ public class LIB_IVR_BASE_BECH
 		this.InstanceID = CallId;      
 	}
 
-	public LIB_IVR_BASE_BECH(String ParametersFile, String CallId, PageContext localPageContext)
+	public LIB_IVR_BASE_VTR(String ParametersFile, String CallId, PageContext localPageContext)
 	{
 		//super(ParametersFile, CallId, localPageContext);
 		Inicializar(ParametersFile);
@@ -202,7 +202,7 @@ public class LIB_IVR_BASE_BECH
 		Debug("    InstanceID: " + InstanceID + ".", "Detail");
 	}
 
-	public LIB_IVR_BASE_BECH()
+	public LIB_IVR_BASE_VTR()
 	{
 		//super();
 		Debug("Se ha generando nueva instancia de la clase.", "Detail");
@@ -1026,7 +1026,7 @@ public Map<String, String> ejecutarSP_SP_TRANSFER_APP(Properties datosEntrada){
 			
 			//OPCION 2
 		    JSONObject DataEnvioSckt = new JSONObject();
-		    DataEnvioSckt.put("servicio",Params.GetValue("SERVICIO_GET_KEY_LOG_NAVEGA_APP","BECH_ECONTACT"));
+		    DataEnvioSckt.put("servicio",Params.GetValue("SERVICIO_GET_KEY_LOG_NAVEGA_APP","VTR_ECONTACT"));
 		    DataEnvioSckt.put("query",Params.GetValue("QUERY_GET_KEY_LOG_NAVEGA_APP","SP_GET_KEY_LOG_NAVEGA_APP"));
 		    DataEnvioSckt.put("parameters",datosEntrada.getProperty("APLICACION"));
 		    DataEnvioSckt.put("select",Params.GetValue("SELECT_GET_KEY_LOG_NAVEGA_APP","1"));
@@ -1198,7 +1198,7 @@ public Map<String, String> ejecutarSP_SP_TRANSFER_APP(Properties datosEntrada){
 			
 			//OPCION 2
 		    JSONObject DataEnvioSckt = new JSONObject();
-		    DataEnvioSckt.put("servicio",Params.GetValue("SERVICIO_GET_KEY_REGISTRA_CDR_EXT_APP","BECH_ECONTACT"));
+		    DataEnvioSckt.put("servicio",Params.GetValue("SERVICIO_GET_KEY_REGISTRA_CDR_EXT_APP","VTR_ECONTACT"));
 		    DataEnvioSckt.put("query",Params.GetValue("QUERY_GET_KEY_GET_REGISTRA_CDR_EXT_APP","SP_GET_KEY_REGISTRA_CDR_EXT_APP"));
 		    DataEnvioSckt.put("parameters",datosEntrada.getProperty("APLICACION"));
 		    DataEnvioSckt.put("select",Params.GetValue("SELECT_GET_KEY_REGISTRA_CDR_EXT_APP","1"));
@@ -1303,8 +1303,8 @@ public Map<String, String> ejecutarSP_SP_TRANSFER_APP(Properties datosEntrada){
 			//Date startTime;
 			//Date stopTime;
 
-			Debug("[econtact.action.FunctionsGESCOM_BECH.Socket_SendRecv] - Se ejecutar� la transacci�n : " + Transaccion + " - " + Server + ":" + Port + " - TimeOut:" + String.valueOf(Timeout), "Detail");
-			Debug("[econtact.action.FunctionsGESCOM_BECH.Socket_SendRecv] -  > Data [" + Message2Send + "]", "Detail");
+			Debug("[econtact.action.FunctionsGESCOM_VTR.Socket_SendRecv] - Se ejecutar� la transacci�n : " + Transaccion + " - " + Server + ":" + Port + " - TimeOut:" + String.valueOf(Timeout), "Detail");
+			Debug("[econtact.action.FunctionsGESCOM_VTR.Socket_SendRecv] -  > Data [" + Message2Send + "]", "Detail");
 
 			//startTime = new Date();
 
@@ -1321,7 +1321,7 @@ public Map<String, String> ejecutarSP_SP_TRANSFER_APP(Properties datosEntrada){
 			}
 			catch (IOException e)
 			{
-				Debug("[econtact.action.FunctionsGESCOM_BECH.Socket_SendRecv] - IOException openning stream buffers: [" + e.toString() + "]", "Standard");
+				Debug("[econtact.action.FunctionsGESCOM_VTR.Socket_SendRecv] - IOException openning stream buffers: [" + e.toString() + "]", "Standard");
 				throw ((Exception) e);
 			}
 
@@ -1332,13 +1332,13 @@ public Map<String, String> ejecutarSP_SP_TRANSFER_APP(Properties datosEntrada){
 					//SocketServerOutputStream.writeBytes(Message2Send);
 					SocketServerOutputStream.println(Message2Send);
 					sReturn = SocketServerInputStream.readLine();
-	//06.11.18 		Debug("[econtact.action.FunctionsGESCOM_BECH.Socket_SendRecv] - Respuesta [" + sReturn + "]", "Detail");
+	//06.11.18 		Debug("[econtact.action.FunctionsGESCOM_VTR.Socket_SendRecv] - Respuesta [" + sReturn + "]", "Detail");
 					//06.11.18
 					System.out.println("    Respuesta [" + sReturn + "]"+ "Detail");
 				}
 				catch (Exception e)
 				{
-					Debug("[econtact.action.FunctionsGESCOM_BECH.Socket_SendRecv] - Exception Writing Message/Getting Answer: [" + e.toString() + "]", "Standard");
+					Debug("[econtact.action.FunctionsGESCOM_VTR.Socket_SendRecv] - Exception Writing Message/Getting Answer: [" + e.toString() + "]", "Standard");
 					throw (e);
 				}
 			}
@@ -1350,7 +1350,7 @@ public Map<String, String> ejecutarSP_SP_TRANSFER_APP(Properties datosEntrada){
 		}
 		catch (Exception e)
 		{
-			Debug("[econtact.action.FunctionsGESCOM_BECH.Socket_SendRecv] - Exception sending message: [" + e.toString() + "]", "Standard");
+			Debug("[econtact.action.FunctionsGESCOM_VTR.Socket_SendRecv] - Exception sending message: [" + e.toString() + "]", "Standard");
 			throw (e);
 		}
 		finally {
@@ -1466,7 +1466,7 @@ public Map<String, String> ejecutarSP_SP_TRANSFER_APP(Properties datosEntrada){
 		int TimeoutPRI = Integer.parseInt(this.Params.GetValue("SocketServerTimeoutPRI_" + Tipo, "3000").trim());
 		int TimeoutBKP = Integer.parseInt(this.Params.GetValue("SocketServerTimeoutBKP_" + Tipo, "3000").trim());
 
-		Debug("[econtact.FunctionsGESCOM_BECH.Socket_SendRecvHA] Conectando con SocketServer Primario.", "Detail");
+		Debug("[econtact.FunctionsGESCOM_VTR.Socket_SendRecvHA] Conectando con SocketServer Primario.", "Detail");
 
 		Date startTime = new Date();
 		try
@@ -1475,19 +1475,19 @@ public Map<String, String> ejecutarSP_SP_TRANSFER_APP(Properties datosEntrada){
 		}
 		catch (Exception e)
 		{
-			Debug("[econtact.FunctionsGESCOM_BECH.Socket_SendRecvHA] Conexion SocketServer Primario fallida, intentando con SocketServer Backup.", "Standard");
+			Debug("[econtact.FunctionsGESCOM_VTR.Socket_SendRecvHA] Conexion SocketServer Primario fallida, intentando con SocketServer Backup.", "Standard");
 			try
 			{
 				sReturn = Socket_SendRecv(ServerBKP, PortBKP, TimeoutBKP, Transaccion, Message2Send);
 			}
 			catch (Exception e1)
 			{
-				Debug("[econtact.FunctionsGESCOM_BECH.Socket_SendRecvHA] Intentos superados.", "Standard");
+				Debug("[econtact.FunctionsGESCOM_VTR.Socket_SendRecvHA] Intentos superados.", "Standard");
 			}
 		}
 		Date stopTime = new Date();
 
-		Registrar(Message2Send, startTime, sReturn, stopTime);
+		//07.02.19 Registrar(Message2Send, startTime, sReturn, stopTime);
 
 		return sReturn;
 	}
@@ -1524,7 +1524,7 @@ public Map<String, String> ejecutarSP_SP_TRANSFER_APP(Properties datosEntrada){
 	}
 
 
-	public boolean Registrar(String Message2send, Date time2Send, String Response, Date responseTime)
+/*	public boolean Registrar(String Message2send, Date time2Send, String Response, Date responseTime)
 	{
 		String RegMessage = "";
 
@@ -1578,7 +1578,7 @@ public Map<String, String> ejecutarSP_SP_TRANSFER_APP(Properties datosEntrada){
 		}
 		return true;
 	}
-
+*/
    
 protected String lookUp(PageContext localPageContext, String ssn)
 {

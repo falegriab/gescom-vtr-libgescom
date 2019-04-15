@@ -1,2 +1,2 @@
-# gescom-bech-libgescom
+# gescom-vtr-libgescom
 Proyecto manejo BD GESCOM
